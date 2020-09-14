@@ -34,7 +34,7 @@ function solve_and_plot(tspan, p, w0)
 		sol = solve(prob, Vern9(), reltol=1e-15, abstol=1e-15, dense=false)
 
 		font = Plots.font("Computer Modern", 24)
-		time, E_L, E_w, E_R = proces_output(sol)
+		time, E_L, E_w, E_R = proces_output(sol, p)
 		labels = ["Lyapunov minimal" "Lyapunov biased" "Lyapunov kinematic" "LTV minimal" "LTV biased" "LTV kinematic"]
 		fig_w = plot(time, E_w, yaxis=:log, lab="", xlabel="Time", ylabel=L"$\|\tilde{\omega}\|$", xtickfont=font,ytickfont=font,xguidefont=font,yguidefont=font)
 		fig_R = plot(time, E_R, yaxis=:log, lab="", ylabel=L"$\|u^{eb}\|$", xtickfont=font,ytickfont=font,xguidefont=font,yguidefont=font)
