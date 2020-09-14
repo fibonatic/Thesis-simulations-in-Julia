@@ -26,7 +26,7 @@ function f(x, p, t)
 			LTV_kinematic(x[p[7].list], R, z, p[7])]
 end
 
-function solve_and_plot(tspan, param, w0)
+function solve_and_plot(tspan, p, w0)
 	figs = [plot(); plot()]
 	for k in (0, 1)
 		x0 = initial_conditions(w0, wh = k * 0.95 * w0, bh = -50 * k * p[1].b)
