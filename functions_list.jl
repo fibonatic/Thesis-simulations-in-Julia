@@ -26,7 +26,7 @@ function f(x, p, t)
 			LTV_kinematic(x[p[7].list], R, z, p[7])]
 end
 
-function solve_and_plot(tspan, param, w0)
+function solve_and_plot(tspan, p, w0)
 	figs = [plot(); plot()]
 	for k in (0, 1)
 		x0 = initial_conditions(w0, wh = k * 0.95 * w0, bh = -50 * k * p[1].b)
@@ -34,7 +34,7 @@ function solve_and_plot(tspan, param, w0)
 		sol = solve(prob, Vern9(), reltol=1e-15, abstol=1e-15, dense=false)
 
 		font = Plots.font("Computer Modern", 24)
-		time, E_L, E_w, E_R = proces_output(sol)
+		time, E_L, E_w, E_R = proces_output(sol, p)
 		labels = ["Lyapunov minimal" "Lyapunov biased" "Lyapunov kinematic" "LTV minimal" "LTV biased" "LTV kinematic"]
 		fig_w = plot(time, E_w, yaxis=:log, lab="", xlabel="Time", ylabel=L"$\|\tilde{\omega}\|$", xtickfont=font,ytickfont=font,xguidefont=font,yguidefont=font)
 		fig_R = plot(time, E_R, yaxis=:log, lab="", ylabel=L"$\|u^{eb}\|$", xtickfont=font,ytickfont=font,xguidefont=font,yguidefont=font)

@@ -41,7 +41,7 @@ function initial_conditions(w0; q0 = [0.5;0.5;0.5;0.5], wh = zeros(3), qh = [1.;
 			Rh; bh; M9[p[7].M2xM]];
 end
 
-function proces_output(sol; step=1, tstart=0)
+function proces_output(sol, p, step=1, tstart=0)
 	len = length(sol.t)
 	list = sum(sol.t.<=tstart) : step : len
 	time = sol.t[list]
